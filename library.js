@@ -141,14 +141,22 @@ const addTrack = function(name, artist, album) {
 
 }
 
-addTrack('Money Trees', 'Kendrick Lamar', 'Good Kid, M.A.A.d City');
-printTracks();
-
-
 // adds a playlist to the library
 const addPlaylist = function(name) {
+  let playlistId = generateUid();
+  let playlistName = name
+  let trackIds = generateUid();
+
+  library.playlists[playlistId] = {
+    id: playlistId,
+    name: playlistName,
+    tracks: trackIds
+  }
 
 }
+
+addPlaylist('Vroom Vroom 2.0');
+printPlaylists();
 
 
 // STRETCH:
