@@ -120,8 +120,29 @@ const generateUid = function() {
 
 // adds a track to the library
 const addTrack = function(name, artist, album) {
+  let trackId = generateUid();
+  let trackName = name;
+  let trackArtist = artist;
+  let trackAlbum = album;
+
+  if (library.tracks[trackId]) {
+    console.log("This track already exists!")
+    return;
+  }
+
+  library.tracks[trackId] = {
+    id: trackId,
+    name: trackName,
+    artist: trackArtist,
+    album: trackAlbum,
+  }
+
+  console.log(`${trackId} has been added to the library.`)
 
 }
+
+addTrack('Money Trees', 'Kendrick Lamar', 'Good Kid, M.A.A.d City');
+printTracks();
 
 
 // adds a playlist to the library
