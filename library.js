@@ -20,7 +20,109 @@ const library = {
                       name: "Other Playlist",
                       tracks: ["t03"]
                     }
-             }
+             },
+
+
+printPlaylists: function () {
+for (let playlistKey in this.playlists) {
+    let playlist = this.playlists[playlistKey];
+    let playlistNumber = playlist.id;
+    let playlistName = playlist.name;
+    let playlistTracks = playlist.tracks.length;
+
+    console.log(`${playlistNumber}: ${playlistName} - ${playlistTracks} tracks`);
+  }
+},
+
+printTracks: function () {
+
+  for (let trackKey in this.tracks) {
+    let track = this.tracks[trackKey];
+    let trackNumber = track.id;
+    let trackName = track.name;
+    let trackArtist = track.artist;
+    let trackAlbum = track.album;
+  
+  
+    console.log(`${trackNumber}: ${trackName} by ${trackArtist} (${trackAlbum})`)
+  }
+},
+
+printPlaylist: function (playlistId) {
+    
+  let playlist = this.playlists[playlistId];
+  let playlistNumber = playlist.id;
+  let playlistName = playlist.name;
+  let playlistTracks = playlist.tracks.length;
+
+  console.log(`${playlistNumber}: ${playlistName} - ${playlistTracks} tracks`);
+
+  console.log('-------')
+
+    for (let trackId of playlist.tracks) {
+      let track = this.tracks[trackId];
+
+      if (track) {
+        let trackNumber = track.id;
+        let trackName = track.name;
+        let trackArtist = track.artist;
+        let trackAlbum = track.album;
+
+        console.log(`${trackNumber}: ${trackName} by ${trackArtist} (${trackAlbum})`);
+      } else {
+        console.log("Track not found")
+      }
+    }; 
+    console.log('-----')
+}, 
+
+addTrackToPlaylist: function (trackId, playlistId) {
+  let playlist = this.playlists[playlistId];
+
+  if (!playlist.tracks.includes(trackId)) {
+    playlist.tracks.push(trackId);
+}
+}, 
+
+generateUid: function () {
+  return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+}, 
+
+addTrack: function (name, artist, album) {
+  let trackId = generateUid();
+  let trackName = name;
+  let trackArtist = artist;
+  let trackAlbum = album;
+
+  if (this.tracks[trackId]) {
+    console.log("This track already exists!")
+    return;
+  }
+
+  this.tracks[trackId] = {
+    id: trackId,
+    name: trackName,
+    artist: trackArtist,
+    album: trackAlbum,
+  }
+
+  console.log(`${trackId} has been added to the library.`)
+
+}, 
+
+addPlaylist: function (name) {
+  let playlistId = generateUid();
+  let playlistName = name
+  let trackIds = generateUid();
+
+  this.playlists[playlistId] = {
+    id: playlistId,
+    name: playlistName,
+    tracks: trackIds
+  }
+
+}
+
 };
 
 /////////////////////////////
@@ -154,9 +256,6 @@ const addPlaylist = function(name) {
   }
 
 }
-
-addPlaylist('Vroom Vroom 2.0');
-printPlaylists();
 
 
 // STRETCH:
