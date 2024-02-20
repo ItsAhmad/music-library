@@ -101,12 +101,13 @@ const printPlaylist = function(playlistId) {
 
 }
 
-printPlaylist('p01');
-
-
 // adds an existing track to an existing playlist
 const addTrackToPlaylist = function(trackId, playlistId) {
+  let playlist = library.playlists[playlistId];
 
+  if (!playlist.tracks.includes(trackId)) {
+    playlist.tracks.push(trackId);
+}
 }
 
 
