@@ -64,16 +64,44 @@ for (let trackKey in library.tracks) {
 
 }; 
 
-printTracks();
-
 
 // prints a list of tracks for a given playlist, using the following format:
 // p01: Coding Music - 2 tracks
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 const printPlaylist = function(playlistId) {
+  let playlist = library.playlists[playlistId];
+
+  for (let playlistKey in library.playlists) {
+
+    let playlist = library.playlists[playlistKey];
+    let playlistNumber = playlist.id;
+    let playlistName = playlist.name;
+    let playlistTracks = playlist.tracks.length;
+
+    console.log(`${playlistNumber}: ${playlistName} - ${playlistTracks} tracks`);
+
+    for (let trackId of playlist.tracks) {
+      let track = library.tracks[trackId];
+
+      if (track) {
+        let trackNumber = track.id;
+        let trackName = track.name;
+        let trackArtist = track.artist;
+        let trackAlbum = track.album;
+
+        console.log(`${trackNumber}: ${trackName} by ${trackArtist} (${trackAlbum})`);
+      } else {
+        console.log("Track not found")
+      }
+
+    }; 
+
+  }; 
 
 }
+
+printPlaylist();
 
 
 // adds an existing track to an existing playlist
