@@ -32,24 +32,19 @@ const library = {
 // p02: Other Playlist - 1 tracks
 const printPlaylists = function() {
 
-  let playlistNumber; 
-  let playlistName;
-  let playlistTracks; 
+  for (let playlistKey in library.playlists) {
+    let playlist = library.playlists[playlistKey];
+    let playlistNumber = playlist.id;
+    let playlistName = playlist.name;
+    let playlistTracks = playlist.tracks.length;
 
-  for (playlists in library) {
-    for (p0 in playlists) {
-      playlistNumber = p0.id
-      playlistName = p0.name
-      playlistTracks = p0.tracks
-    }
+    console.log(`${playlistNumber}: ${playlistName} - ${playlistTracks} tracks`);
   }
 
-  console.log(`${playlistNumber}: ${playlistName} - ${playlistTracks}`)
-  console.log("hello")
 
 };
 
-console.log(printPlaylists);
+printPlaylists();
 
 
 // prints a list of all tracks, using the following format:
